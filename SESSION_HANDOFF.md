@@ -1,5 +1,126 @@
 # Concrete Service Session Handoff
 
+## Current Session Update - 2026-06-30
+
+Workspace on this PC: `C:\Users\User\Desktop\Concrete-Service-30.06`
+
+User language/context: Ukrainian. The user is visually polishing the Home page and often refers to sections by what is visible on screen.
+
+### Files Changed In This Session
+
+```text
+M  index.html
+M  css/bundle.css
+M  js/main.js
+?? img/home/provider-matching-bg.webp
+```
+
+### What Changed
+
+1. Home hero stats were reworked.
+   - Old mock KPI content was removed:
+     - `4,200+ Requests organized`
+     - `7+ Service categories`
+     - `24h Typical routing window`
+   - New content is practical aggregator support:
+     - `Clearer scope`
+     - `Local routing`
+     - `Your decision`
+   - Markup lives in `index.html` inside `.hero-stats`.
+   - Styling lives in `css/bundle.css` around `.hero-stats` and `.stat`.
+
+2. `Provider matching` section was made more visual.
+   - Generated a realistic concrete/project consultation background.
+   - Final saved project asset:
+     - `img/home/provider-matching-bg.webp`
+   - CSS uses it through `.match-story::before`.
+   - Overlay was repeatedly lightened because the user said the background was too weak.
+   - Current values make the image intentionally visible:
+     - `.match-story::before { opacity: 0.9; }`
+     - overlay gradients in `.match-story::after` are lighter, especially on the right.
+
+3. `Provider matching` cards got hover effects.
+   - Card lift.
+   - Yellow left accent reveal.
+   - Stronger border/shadow.
+   - Icon movement.
+   - Important user correction: icons must NOT become white on hover.
+   - Current hover keeps icon yellow:
+     - `.match-story__cards article:hover .fa-solid { background: var(--yellow); color: var(--ink); }`
+
+4. FAQ plus icons were animated.
+   - FAQ plus icons rotate into a cross on hover/open.
+   - Light FAQ gets yellow active state.
+   - `js/main.js` now sets `aria-expanded` on FAQ buttons.
+   - Relevant code:
+     - `initFAQ()` in `js/main.js`
+     - `.faq-item svg`, `.faq-item.is-open svg`, `.light-faq .faq-item.is-open svg` in `css/bundle.css`
+
+5. The `After you submit` split composition was adjusted.
+   - User showed a screenshot where the left image looked too short and disconnected from the right content.
+   - Added class:
+     - `.after-submit-split` on the specific `container split`
+     - `.after-submit-media` on the `single-image` wrapper
+   - The image is now taller and vertically centered with the text block.
+   - Added a yellow construction-style accent behind the image.
+   - On tablet/mobile, the decorative offset/accent is disabled.
+
+### Generated Image Details
+
+Built-in image generation was used. Original generated PNG remains under Codex generated images:
+
+```text
+C:\Users\User\.codex\generated_images\019f189c-f7d8-7752-96bb-be3f3d2bd74b\ig_0adc7a18cd80c272016a43c03a08448198ad5917f90683a999.png
+```
+
+It was converted to WebP with `npx.cmd --yes sharp-cli` and saved here:
+
+```text
+img/home/provider-matching-bg.webp
+```
+
+Prompt summary: photorealistic residential concrete project staging/consultation scene, prepared slab/driveway, concrete forms, clipboard, gloves, measuring tape, warm natural light, no text, no logos, no futuristic elements.
+
+### Local Server Notes
+
+Port `4173` was occupied by another local site (`FlowCore Plumbing`) on this PC, so Concrete Service was run on:
+
+```text
+http://127.0.0.1:4273/
+```
+
+Command:
+
+```powershell
+python -m http.server 4273 --bind 127.0.0.1
+```
+
+Asset check passed:
+
+```text
+http://127.0.0.1:4273/img/home/provider-matching-bg.webp -> 200
+```
+
+### Visual Direction From User Feedback
+
+- User disliked fake-looking hero metrics; prefers meaningful aggregator-support content.
+- User wants `Provider matching` background image to be clearly visible, not just hinted.
+- User noticed white hover icons and wanted them fixed.
+- User is sensitive to section composition and spacing; screenshot feedback focused on image/text balance.
+- Keep the style premium construction/concrete, realistic, not futuristic.
+
+### Next Suggested Work
+
+1. Visually review Home at `127.0.0.1:4273`, especially:
+   - hero stats on mobile and desktop
+   - `Provider matching` background readability
+   - `After you submit` split composition after the latest taller-image change
+2. If `After you submit` still feels heavy, tune `.after-submit-media`:
+   - lower `min-height`
+   - reduce yellow accent size
+   - adjust `object-position`
+3. Continue polishing later Home sections for the same visual rhythm.
+
 ## Project
 
 Workspace: `E:\lp\Concrete Service-30.06`

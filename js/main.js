@@ -469,10 +469,17 @@ function renderServicePage() {
 
 function initFAQ() {
   $$(".faq-item").forEach((item) => {
+    item.setAttribute("aria-expanded", "false");
     item.addEventListener("click", () => {
       const wasOpen = item.classList.contains("is-open");
-      $$(".faq-item", item.parentElement).forEach((sibling) => sibling.classList.remove("is-open"));
-      if (!wasOpen) item.classList.add("is-open");
+      $$(".faq-item", item.parentElement).forEach((sibling) => {
+        sibling.classList.remove("is-open");
+        sibling.setAttribute("aria-expanded", "false");
+      });
+      if (!wasOpen) {
+        item.classList.add("is-open");
+        item.setAttribute("aria-expanded", "true");
+      }
     });
   });
 }
