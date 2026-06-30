@@ -201,28 +201,63 @@
 
 @media (max-width: 700px) {
   .about-hero {
-    min-height: 34svh;
-    padding-top: 92px;
-    padding-bottom: 34px;
+    min-height: 30svh;
+    padding-top: 86px;
+    padding-bottom: 28px;
+  }
+
+  .about-summary {
+    padding: 22px;
   }
 
   .about-role__cards div {
     grid-template-columns: 52px 1fr;
+    min-height: auto;
+    padding: 14px;
+    gap: 12px;
   }
 
   .about-role__cards span {
     grid-column: 2;
   }
 
+  .about-values__grid {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    padding-bottom: 4px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .about-values__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about-values__grid article {
+    flex: 0 0 min(82vw, 330px);
+    min-height: 250px;
+    padding: 20px;
+    scroll-snap-align: start;
+  }
+
+  .about-values__grid b {
+    margin-bottom: 22px;
+    font-size: 1.55rem;
+  }
+
   .about-checklist div {
     grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 12px 0;
   }
 }
 
 @media (max-width: 520px) {
   .about-role__media,
   .about-verify__media {
-    min-height: 300px;
+    min-height: 230px;
   }
 
   .about-role__cards div {
@@ -231,5 +266,14 @@
 
   .about-role__cards span {
     grid-column: auto;
+  }
+
+  .about-role__cards i {
+    width: 42px;
+    height: 42px;
+  }
+
+  .about-values__grid article {
+    flex-basis: 86vw;
   }
 }

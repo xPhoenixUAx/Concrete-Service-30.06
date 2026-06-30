@@ -115,15 +115,54 @@ body.modal-open {
 
 @media (max-width: 560px) {
   .form-modal {
-    padding: 72px 14px 14px;
+    padding: 58px 12px 12px;
     place-items: start center;
   }
 
   .form-modal__dialog {
-    padding: 22px;
+    padding: 18px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%);
+  }
+
+  .form-modal__close {
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .form-modal__mark {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 12px;
+  }
+
+  .form-modal h2 {
+    padding-right: 34px;
+    font-size: 1.45rem;
+  }
+
+  .form-modal p {
+    margin-top: 8px;
+    font-size: 0.88rem;
+    line-height: 1.42;
+  }
+
+  .form-modal__steps {
+    margin: 16px 0;
   }
 
   .form-modal__steps div {
     grid-template-columns: 42px 1fr;
+    min-height: auto;
+    padding: 10px 12px;
+  }
+
+  .form-modal__steps b {
+    font-size: 1rem;
+  }
+
+  .form-modal__steps span {
+    font-size: 0.84rem;
   }
 }

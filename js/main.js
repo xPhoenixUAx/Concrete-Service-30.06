@@ -713,6 +713,52 @@ function initFloatingAction() {
   addEventListener("scroll", update, { passive: true });
 }
 
+function initCookieBanner() {
+  const storageKey = "concreteServiceCookieChoice";
+  const storage = (() => {
+    try {
+      localStorage.setItem("__cookie_test__", "1");
+      localStorage.removeItem("__cookie_test__");
+      return localStorage;
+    } catch {
+      return null;
+    }
+  })();
+  const savedChoice = storage?.getItem(storageKey);
+  if (savedChoice) return;
+
+  const banner = document.createElement("section");
+  banner.className = "cookie-banner";
+  banner.setAttribute("aria-label", "Cookie notice");
+  banner.innerHTML = `
+    <div>
+      <h2>Cookie Notice</h2>
+      <p>We use necessary cookies to keep this site working and may use optional cookies to understand visits and improve the matching experience. Read our <a href="cookie.html">Cookie Policy</a>.</p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button class="btn btn-ghost" type="button" data-cookie-choice="declined">Decline</button>
+      <button class="btn btn-primary" type="button" data-cookie-choice="accepted">Accept</button>
+    </div>
+  `;
+  document.body.append(banner);
+
+  const closeBanner = (choice) => {
+    storage?.setItem(storageKey, choice);
+    banner.classList.remove("is-visible");
+    document.body.classList.remove("cookie-banner-open");
+    setTimeout(() => banner.remove(), 320);
+  };
+
+  $$("[data-cookie-choice]", banner).forEach((button) => {
+    button.addEventListener("click", () => closeBanner(button.dataset.cookieChoice));
+  });
+
+  requestAnimationFrame(() => {
+    banner.classList.add("is-visible");
+    document.body.classList.add("cookie-banner-open");
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initConfigText();
   renderServiceGrids();
@@ -723,5 +769,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initForm();
   initIcons();
   initFloatingAction();
+  initCookieBanner();
   initMotion();
 });
