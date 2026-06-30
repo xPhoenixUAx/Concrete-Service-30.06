@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-<head><link rel="icon" href="data:,">
+<head>
+  <link rel="icon" type="image/svg+xml" href="img/brand/concrete-mixer.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Services | Concrete Service</title>
@@ -8,33 +9,201 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/bundle.css"><link rel="stylesheet" href="css/pages/services.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/bundle.css">
+  <link rel="stylesheet" href="css/pages/services.css">
 </head>
 <body>
-  <header class="site-header"><div class="nav-shell"><a class="brand" href="index.html"><span class="brand-mark">CS</span><span data-brand></span></a><nav class="main-nav" data-nav><a href="index.html">Home</a><a class="active" href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><a class="header-contact" data-email></a><button class="menu-toggle" type="button" data-menu-toggle aria-label="Open menu"><i data-lucide="menu"></i></button></div></header>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="index.html"><span class="brand-mark">CS</span><span data-brand></span></a>
+      <nav class="main-nav" data-nav>
+        <a href="index.html">Home</a>
+        <a class="active" href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="header-contact" data-email></a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-label="Open menu"><i data-lucide="menu"></i></button>
+    </div>
+  </header>
+
   <main>
-    <section class="page-hero section-dark">
-      <img class="page-hero__bg" src="img/home/services-overview.webp" alt="Concrete inspection and service planning" data-parallax>
-      <div class="container reveal"><span class="eyebrow">Concrete service categories</span><h1>One request can cover the full concrete cycle.</h1><p>From new pours to repairs, decorative finishes, and small commercial flatwork, Concrete Service helps homeowners and property owners reach local independent providers.</p></div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="section-heading reveal"><span class="eyebrow">All services</span><h2>Choose the concrete work that best matches your project.</h2></div>
-        <div class="services-grid" data-services-grid></div>
+    <section class="page-hero services-hero section-dark">
+      <img class="page-hero__bg" src="img/services/services-hero-v2.webp" alt="Concrete forms, gravel base, and project planning tools" data-parallax>
+      <div class="container reveal">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>Services</span>
+        </nav>
+        <h1>Services</h1>
       </div>
     </section>
-    <section class="section section-dark">
-      <div class="container process-grid">
-        <div class="section-kicker reveal"><span class="eyebrow">Full cycle support</span><h2>Information in. Local provider options out.</h2><p>Every category page explains common scope, preparation, homeowner checklist items, and questions to ask before hiring.</p></div>
-        <div class="timeline reveal">
-          <div class="timeline-item"><b>01</b><p>Identify the surface, damage, measurements, access, and urgency.</p></div>
-          <div class="timeline-item"><b>02</b><p>Receive a connection path to independent providers suited to that concrete category.</p></div>
-          <div class="timeline-item"><b>03</b><p>Verify license, insurance, scope, payment terms, and warranties before signing.</p></div>
+
+    <section class="section services-intro">
+      <div class="container services-intro__grid">
+        <div class="section-kicker reveal">
+          <span class="eyebrow">Service map</span>
+          <h2>Start with the surface, then narrow the scope.</h2>
+          <p>Concrete Service is a matching platform, not the crew doing the work. The goal is to help you describe the project clearly so independent local providers can respond with a more useful conversation.</p>
+        </div>
+        <div class="scope-meter reveal" aria-label="Concrete request checkpoints">
+          <div><b>01</b><span>What surface needs attention?</span></div>
+          <div><b>02</b><span>Is it new, damaged, decorative, or business-facing?</span></div>
+          <div><b>03</b><span>What photos, measurements, access notes, and timing details matter?</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted service-directory">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Grouped services</span>
+          <h2>Concrete categories with the common project points inside each one.</h2>
+        </div>
+
+        <div class="service-category-layout">
+          <article class="service-category service-category--large reveal">
+            <a class="service-category__media" href="service-driveways.html">
+              <img src="img/services/services-hero-v2.webp" alt="Prepared concrete driveway base and forms">
+            </a>
+            <div class="service-category__body">
+              <span class="mini-label"><i class="fa-solid fa-helmet-safety" aria-hidden="true"></i> New concrete</span>
+              <h3>Pour, replace, and build new surfaces</h3>
+              <p>Best for projects where the concrete surface is being created from scratch or fully removed and replaced.</p>
+              <ul>
+                <li>Driveway installation, replacement, widening, aprons, and parking pads.</li>
+                <li>Garage slabs, shed pads, equipment pads, footings, and foundation-adjacent flatwork.</li>
+                <li>Walkways, steps, stoops, landings, and entry paths with new forms and finish planning.</li>
+                <li>Details to prepare: dimensions, access, slope, drainage, load, demolition needs, and finish preference.</li>
+              </ul>
+              <div class="service-category__links">
+                <a href="service-driveways.html">Concrete Driveways <i data-lucide="arrow-up-right"></i></a>
+                <a href="service-slabs-foundations.html">Slabs & Foundations <i data-lucide="arrow-up-right"></i></a>
+                <a href="service-sidewalks-steps.html">Sidewalks, Steps & Walkways <i data-lucide="arrow-up-right"></i></a>
+                <a href="service-garage-floors.html">Garage Floors & Interior Concrete <i data-lucide="arrow-up-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-category reveal">
+            <a class="service-category__media" href="service-repair-resurfacing.html">
+              <img src="img/services/category-repair-v2.webp" alt="Concrete crack and spalling inspection">
+            </a>
+            <div class="service-category__body">
+              <span class="mini-label"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Existing surfaces</span>
+              <h3>Repair, restore, and resurface</h3>
+              <p>For concrete that is cracked, pitted, spalling, uneven, worn, stained, or showing water-related damage.</p>
+              <ul>
+                <li>Crack filling, patching, spall repair, overlays, and surface renewal.</li>
+                <li>Trip hazard review for walks, porches, steps, patios, and garage floors.</li>
+                <li>Details to prepare: close photos, damage age, pooling water, prior coatings, and movement concerns.</li>
+              </ul>
+              <div class="service-category__links">
+                <a href="service-repair-resurfacing.html">Concrete Repair & Resurfacing <i data-lucide="arrow-up-right"></i></a>
+                <a href="service-garage-floors.html">Garage Floor Repair <i data-lucide="arrow-up-right"></i></a>
+                <a href="service-sidewalks-steps.html">Walkway & Step Repair <i data-lucide="arrow-up-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-category reveal">
+            <a class="service-category__media" href="service-stamped-decorative.html">
+              <img src="img/services/category-decorative-v2.webp" alt="Stamped concrete samples and sealing tools">
+            </a>
+            <div class="service-category__body">
+              <span class="mini-label"><i class="fa-solid fa-stamp" aria-hidden="true"></i> Finish upgrades</span>
+              <h3>Decorative patios, texture, and color</h3>
+              <p>For homeowner projects where appearance, pattern, color, and maintenance are part of the decision.</p>
+              <ul>
+                <li>Stamped patios, textured walkways, colored concrete, borders, and outdoor living areas.</li>
+                <li>Sealing, resealing, slip-resistance discussion, and sample-board review.</li>
+                <li>Details to prepare: inspiration photos, preferred tones, wet-area use, and resealing expectations.</li>
+              </ul>
+              <div class="service-category__links">
+                <a href="service-stamped-decorative.html">Stamped & Decorative Concrete <i data-lucide="arrow-up-right"></i></a>
+                <a href="service-driveways.html">Decorative Driveway Options <i data-lucide="arrow-up-right"></i></a>
+                <a href="service-sidewalks-steps.html">Decorative Walkways <i data-lucide="arrow-up-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-category reveal">
+            <a class="service-category__media" href="service-commercial-flatwork.html">
+              <img src="img/services/category-commercial-v2.webp" alt="Small commercial concrete walkway and ramp planning">
+            </a>
+            <div class="service-category__body">
+              <span class="mini-label"><i class="fa-solid fa-building" aria-hidden="true"></i> Business property</span>
+              <h3>Small commercial and access flatwork</h3>
+              <p>For storefronts, small business properties, shared access routes, equipment pads, and public-facing surfaces.</p>
+              <ul>
+                <li>Storefront walks, pads, ramps, curbs, loading areas, dumpster pads, and concrete sections.</li>
+                <li>Work-window planning, barricades, tenant access, curing time, and reopening expectations.</li>
+                <li>Details to prepare: property access, business hours, photos, safety concerns, and insurance needs.</li>
+              </ul>
+              <div class="service-category__links">
+                <a href="service-commercial-flatwork.html">Commercial Concrete Flatwork <i data-lucide="arrow-up-right"></i></a>
+                <a href="service-slabs-foundations.html">Equipment Pads & Slabs <i data-lucide="arrow-up-right"></i></a>
+                <a href="service-sidewalks-steps.html">Public-Facing Walkways <i data-lucide="arrow-up-right"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services-choice">
+      <div class="container services-choice__grid">
+        <div class="choice-panel reveal">
+          <span class="eyebrow">Not sure where it fits?</span>
+          <h2>Use the condition of the surface to choose the first conversation.</h2>
+          <p>A project may touch more than one category. Start with the most urgent part: new placement, visible damage, finish appearance, or access for a business property.</p>
+          <a class="btn btn-primary" href="contact.html">Start a Request <i data-lucide="arrow-up-right"></i></a>
+        </div>
+        <div class="choice-list reveal">
+          <div><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i><b>New footprint</b><span>Use pour and replace when forms, base prep, thickness, and finish are the main questions.</span></div>
+          <div><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><b>Damage first</b><span>Use repair and resurfacing when cracks, spalling, pitting, or uneven areas need evaluation.</span></div>
+          <div><i class="fa-solid fa-palette" aria-hidden="true"></i><b>Look and texture</b><span>Use decorative when pattern, color, borders, sealing, and maintenance shape the estimate.</span></div>
+          <div><i class="fa-solid fa-store" aria-hidden="true"></i><b>Public access</b><span>Use commercial flatwork when timing, signage, safety, insurance, and operating hours matter.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark request-ready">
+      <div class="container request-ready__grid">
+        <div class="request-ready__media reveal">
+          <img src="img/services/request-intake-v2.webp" alt="Concrete project photos, tape measure, and request notes">
+        </div>
+        <div class="section-kicker reveal">
+          <span class="eyebrow">Before matching</span>
+          <h2>A clearer request helps providers respond with fewer guesses.</h2>
+          <p>Photos and measurements are not busywork. They help independent providers understand access, condition, surface use, and whether the project should be estimated as repair, replacement, decorative work, or commercial flatwork.</p>
+          <div class="ready-list">
+            <div><b>Photos</b><span>Wide shots, close damage shots, access routes, steps, slopes, and drainage areas.</span></div>
+            <div><b>Measurements</b><span>Approximate length, width, depth concerns, step count, or square footage.</span></div>
+            <div><b>Context</b><span>Vehicle load, coating plans, finish preference, timing needs, and known restrictions.</span></div>
+          </div>
         </div>
       </div>
     </section>
   </main>
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="brand-mark">CS</span><span data-brand></span></a><p class="footer-line" data-footer-line></p><p data-footer-text></p></div><div><h3>Pages</h3><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></div><div><h3>Legal</h3><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a><a href="cookie.html">Cookie Policy</a></div><div><h3>Contact</h3><a data-email></a><p data-website></p><p data-address></p></div></div><p class="disclaimer" data-disclaimer></p><div class="footer-bottom"><span data-copyright></span><span>Independent provider matching platform</span></div></div></footer>
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script><script src="js/main.js"></script>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><a class="brand" href="index.html"><span class="brand-mark">CS</span><span data-brand></span></a><p class="footer-line" data-footer-line></p><p data-footer-text></p></div>
+        <div><h3>Pages</h3><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+        <div><h3>Legal</h3><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a><a href="cookie.html">Cookie Policy</a></div>
+        <div><h3>Contact</h3><a data-email></a><p data-website></p><p data-address></p></div>
+      </div>
+      <p class="disclaimer" data-disclaimer></p>
+      <div class="footer-bottom"><span data-copyright></span><span>Independent provider matching platform</span></div>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

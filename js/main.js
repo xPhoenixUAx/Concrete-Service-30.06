@@ -382,6 +382,20 @@ function renderServicePage() {
   const service = services.find((item) => item.slug === slug) || services[0];
   document.title = `${service.title} | ${siteConfig.company}`;
   const related = services.filter((item) => item.slug !== service.slug).slice(0, 3);
+  const scopeGroups = [
+    {
+      title: "Surface and site",
+      text: service.checklist[0] || "Measure the surface and document the project area."
+    },
+    {
+      title: "Condition and access",
+      text: service.checklist[1] || "Note site access, visible damage, drainage, and use requirements."
+    },
+    {
+      title: "Photos and context",
+      text: service.checklist[2] || "Share photos and timing details so providers can understand the request."
+    }
+  ];
 
   root.innerHTML = `
     <section class="service-hero section-dark">
@@ -402,14 +416,32 @@ function renderServicePage() {
     </section>
 
     <section class="section">
-      <div class="container split">
+      <div class="container service-scope">
         <div class="section-kicker reveal">
-          <span>Included scope</span>
+          <span class="eyebrow">Included scope</span>
           <h2>What homeowners commonly request</h2>
+          <p>These are common project points for ${service.title.toLowerCase()}. The final scope should always be confirmed directly with the independent provider who evaluates the site.</p>
         </div>
-        <div class="feature-list reveal">
-          ${service.includes.map((item) => `<div><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>${item}</span></div>`).join("")}
+        <div class="scope-card-grid reveal">
+          ${service.includes.map((item) => `<article><span>${item}</span></article>`).join("")}
         </div>
+      </div>
+    </section>
+
+    <section class="section section-muted">
+      <div class="container service-visual-grid">
+        <article class="service-visual-card reveal">
+          <img src="${asset(service.image)}" alt="${service.title} project example">
+          <div><span class="eyebrow">${service.eyebrow}</span><h3>Project type</h3><p>${service.short}</p></div>
+        </article>
+        <article class="service-visual-card reveal">
+          <img src="${asset("img/services/detail-site-prep-v2.webp")}" alt="Concrete site preparation details">
+          <div><span class="eyebrow">Site prep</span><h3>What providers need to see</h3><p>Base condition, forms, access, drainage, demolition needs, surface use, and the surrounding property all affect the conversation.</p></div>
+        </article>
+        <article class="service-visual-card reveal">
+          <img src="${asset("img/services/detail-estimate-review-v2.webp")}" alt="Concrete estimate review and project notes">
+          <div><span class="eyebrow">Estimate review</span><h3>Compare written details</h3><p>Look beyond the price. Compare prep, materials, thickness, finish, cleanup, timeline, payment terms, and warranty notes.</p></div>
+        </article>
       </div>
     </section>
 
@@ -430,13 +462,30 @@ function renderServicePage() {
 
     <section class="section">
       <div class="container detail-grid">
-        <div class="dark-panel reveal">
+        <div class="checklist-intro reveal">
           <span class="eyebrow">Before you hire</span>
-          <h2>Homeowner checklist</h2>
-          <p>Use these notes when comparing providers. The final provider is responsible for explaining methods, licensing, insurance, schedule, and warranty terms.</p>
+          <h2>Use this as your estimate conversation guide.</h2>
+          <p>Concrete Service can help organize the request, but the provider you choose should explain the work directly. These are the points to confirm before accepting an estimate.</p>
+          <a class="text-link" href="contact.html">Start a matching request <i data-lucide="arrow-up-right"></i></a>
         </div>
         <div class="checklist reveal">
-          ${service.checklist.map((item) => `<label><input type="checkbox"><span>${item}</span></label>`).join("")}
+          ${service.checklist.map((item) => `<div><span>${item}</span></div>`).join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark service-proof">
+      <div class="container service-proof__grid">
+        <div class="section-kicker reveal">
+          <span class="eyebrow">Provider verification</span>
+          <h2>Good matching still needs homeowner review.</h2>
+          <p>Concrete Service helps organize the request, but the hiring decision belongs to the homeowner. Before work begins, ask the provider to explain the documents, methods, and terms that apply to your project.</p>
+          <div class="proof-points">
+            ${scopeGroups.map((item) => `<div><b>${item.title}</b><span>${item.text}</span></div>`).join("")}
+          </div>
+        </div>
+        <div class="service-proof__media reveal">
+          <img src="${asset("img/services/detail-provider-check-v2.webp")}" alt="Concrete provider document review before hiring">
         </div>
       </div>
     </section>
@@ -488,9 +537,37 @@ function initForm() {
   const form = $("[data-contact-form]");
   if (!form) return;
   const message = $("[data-success-message]");
+  const modal = $("[data-form-modal]");
+  const modalDialog = modal ? $(".form-modal__dialog", modal) : null;
+  const modalMessage = $("[data-modal-message]");
+
+  const closeModal = () => {
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.classList.remove("modal-open");
+  };
+
+  const openModal = () => {
+    if (!modal) return;
+    if (modalMessage) modalMessage.textContent = siteConfig.successMessage;
+    modal.hidden = false;
+    document.body.classList.add("modal-open");
+    modalDialog?.focus();
+  };
+
+  $$("[data-modal-close]", modal || document).forEach((button) => {
+    button.addEventListener("click", closeModal);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal && !modal.hidden) closeModal();
+  });
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (message) {
+    if (modal) {
+      openModal();
+    } else if (message) {
       message.textContent = siteConfig.successMessage;
       message.hidden = false;
     }
@@ -501,12 +578,61 @@ function initForm() {
 function initNavigation() {
   const toggle = $("[data-menu-toggle]");
   const nav = $("[data-nav]");
+  if (nav && !$(".nav-dropdown", nav)) {
+    $$('a[href$="services.html"]', nav).forEach((servicesLink) => {
+      const dropdown = document.createElement("div");
+      dropdown.className = "nav-dropdown";
+      const menu = document.createElement("div");
+      menu.className = "nav-dropdown__menu";
+      menu.setAttribute("aria-label", "Concrete services");
+      menu.innerHTML = [
+        `<a href="services.html">All Services</a>`,
+        ...services.map((service) => `<a href="${serviceHref(service.slug)}">${service.title}</a>`)
+      ].join("");
+      servicesLink.after(dropdown);
+      dropdown.append(servicesLink, menu);
+      servicesLink.classList.add("nav-dropdown__trigger");
+      servicesLink.setAttribute("aria-haspopup", "true");
+      servicesLink.setAttribute("aria-expanded", "false");
+    });
+  }
+
   if (toggle && nav) {
+    const dropdowns = $$(".nav-dropdown", nav);
+    const closeMenu = () => {
+      document.body.classList.remove("menu-open");
+      toggle.setAttribute("aria-expanded", "false");
+      dropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("is-open");
+        $(".nav-dropdown__trigger", dropdown)?.setAttribute("aria-expanded", "false");
+      });
+    };
+
     toggle.addEventListener("click", () => {
       const open = document.body.classList.toggle("menu-open");
       toggle.setAttribute("aria-expanded", String(open));
+      if (!open) closeMenu();
     });
-    $$("a", nav).forEach((link) => link.addEventListener("click", () => document.body.classList.remove("menu-open")));
+
+    dropdowns.forEach((dropdown) => {
+      const trigger = $(".nav-dropdown__trigger", dropdown);
+      trigger?.addEventListener("click", (event) => {
+        if (innerWidth > 980) return;
+        event.preventDefault();
+        const open = dropdown.classList.toggle("is-open");
+        trigger.setAttribute("aria-expanded", String(open));
+      });
+    });
+
+    $$("a", nav).forEach((link) => {
+      link.addEventListener("click", () => {
+        if (link.classList.contains("nav-dropdown__trigger") && innerWidth <= 980) return;
+        closeMenu();
+      });
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && document.body.classList.contains("menu-open")) closeMenu();
+    });
   }
 
   const header = $(".site-header");
@@ -569,6 +695,24 @@ function initIcons() {
   if (window.lucide) lucide.createIcons();
 }
 
+function initFloatingAction() {
+  const phoneHref = `tel:${siteConfig.phone.replace(/[^\d+]/g, "")}`;
+  const action = document.createElement("a");
+  action.className = "floating-action";
+  action.href = phoneHref;
+  action.setAttribute("aria-label", `Call ${siteConfig.company}`);
+  action.innerHTML = '<i class="fa-solid fa-phone" aria-hidden="true"></i><span>Call</span>';
+  document.body.append(action);
+  document.body.classList.add("has-floating-action");
+
+  const update = () => {
+    action.classList.toggle("is-visible", scrollY > 120);
+  };
+
+  update();
+  addEventListener("scroll", update, { passive: true });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initConfigText();
   renderServiceGrids();
@@ -578,5 +722,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initFAQ();
   initForm();
   initIcons();
+  initFloatingAction();
   initMotion();
 });
