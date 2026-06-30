@@ -1,4 +1,4 @@
-const siteConfig = {
+﻿const siteConfig = {
   company: "Concrete Service",
   domain: "concreteservice.local",
   website: "www.concreteservice.local",
@@ -9,7 +9,7 @@ const siteConfig = {
   companyId: "Aggregator ID CS-48291",
   footerText:
     "Concrete Service is a free matching platform helping homeowners compare local concrete providers for repairs, flatwork, resurfacing, and installation needs.",
-  copyright: "© 2026 Concrete Service. All rights reserved.",
+  copyright: "\u00a9 2026 Concrete Service. All rights reserved.",
   successMessage:
     "Thank you. Concrete Service has received your request. A local matching coordinator will review it and contact you through support@concreteservice.local."
 };
@@ -325,7 +325,7 @@ function initConfigText() {
   $$("[data-address]").forEach((el) => (el.textContent = siteConfig.address));
   $$("[data-website]").forEach((el) => (el.textContent = siteConfig.website));
   $$("[data-footer-line]").forEach(
-    (el) => (el.textContent = `${siteConfig.company} · ${siteConfig.address} · ${siteConfig.companyId}`)
+    (el) => (el.textContent = `${siteConfig.company} \u00b7 ${siteConfig.address} \u00b7 ${siteConfig.companyId}`)
   );
   $$("[data-footer-text]").forEach((el) => (el.textContent = siteConfig.footerText));
   $$("[data-copyright]").forEach((el) => (el.textContent = siteConfig.copyright));
@@ -760,7 +760,6 @@ function initCookieBanner() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  initConfigText();
   renderServiceGrids();
   renderServicePage();
   initConfigText();
